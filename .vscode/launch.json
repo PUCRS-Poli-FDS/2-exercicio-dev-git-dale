@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FileReader",
+            "request": "launch",
+            "mainClass": "FileReader"
+        }
+    ]
+}

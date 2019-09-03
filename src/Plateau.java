@@ -6,10 +6,10 @@ public class Plateau {
     private int coordY;
     private List<Rover> rovers;
 
-    Plateau(int coordX, int coordY) {
+    public Plateau(int coordX, int coordY) {
         this.coordX = coordX;
         this.coordY = coordY;
-        rovers = new ArrayList<>();
+        rovers = new ArrayList<Rover>();
     }
 
     public int getCoordX() {
