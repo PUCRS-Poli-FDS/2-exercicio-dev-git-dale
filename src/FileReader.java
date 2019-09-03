@@ -12,7 +12,7 @@ public class FileReader{
     }
 
     public void readFile() {
-
+/*
         String currDir = Paths.get(""). toAbsolutePath().toString();
         String file = currDir + "\\" + this.file;
         Path path = Paths.get(file);
@@ -37,6 +37,6 @@ public class FileReader{
 
         } catch (IOException e) {
             System.out.println("Excecao: " + e.getMessage());
-        }
+        }*/
     }
 }

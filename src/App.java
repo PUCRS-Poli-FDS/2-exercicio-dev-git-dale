@@ -1,6 +1,8 @@
 public class App {
     public static void main(String[] args) {
-        Plateau plateau = new Plateau(5, 5);
+        //Plateau plateau = new Plateau(5, 5);
+        Plateau plateau = Plateau.getInstance(5,5);
+        /*
         Rover rover1 = new Rover(1, 2, 'N');
         rover1.changeOrientation('L');
         rover1.move();
@@ -30,6 +32,6 @@ public class App {
         for (int i = 0; i < plateau.getRovers().size(); i++) {
             System.out.println(plateau.getRovers().get(i));
         }
-
+        */
     }
 }

@@ -57,6 +57,12 @@ public class Rover {
         }
     }
 
+    public boolean canMove(int coordX, int coordY){
+        boolean cm = (coordX < 0 && coordX < Plateau.getInstance().getCoordX()) ||
+                     (coordY < 0 && coordY < Plateau.getInstance().getCoordY());   
+        return cm;
+    } 
+
     @Override
     public String toString() {
         return coordX + " " + coordY + " " + orientation;
