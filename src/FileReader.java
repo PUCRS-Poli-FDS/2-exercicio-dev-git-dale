@@ -12,10 +12,11 @@ public class FileReader{
     public static void readFile() throws IOException {
         String currDir = Paths.get("").toAbsolutePath().toString();
         File flatFile = new File(currDir + FILE_PATH);
+        
         List<String> lines = Files.readAllLines(flatFile.toPath());
+        lines.removeAll(Collections.singletonList(""));
 
         String[] plateau = lines.get(0).split(" ");
-        
         Plateau plateauTerra = new Plateau(Integer.parseInt(plateau[0]), Integer.parseInt(plateau[1]));
     }
 
