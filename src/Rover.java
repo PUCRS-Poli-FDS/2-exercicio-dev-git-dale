@@ -9,7 +9,7 @@ public class Rover {
         this.orientation = orientation;
     }
 
-    public void changeOrientation(char direction) {
+    private void changeOrientation(char direction) {
         switch (orientation) {
             case 'N':
                 changeOrientation(direction, 'E', 'W');
@@ -38,7 +38,7 @@ public class Rover {
         }
     }
 
-    public void move() {
+    private void forwardMove() {
         switch (orientation) {
             case 'N':
                 coordY++;
@@ -54,6 +54,16 @@ public class Rover {
                 break;
             default:
                 throw new RuntimeException("Wrong orientation");
+        }
+    }
+
+    public void move(char[] orientation) {
+        for (char var : orientation) {
+            if(var == 'L' || var == 'R') {
+                changeOrientation(var);
+            }else if (var == 'M') {
+                forwardMove();
+            }
         }
     }
 

@@ -1,35 +1,25 @@
+import java.io.IOException;
+import java.util.List;
+
 public class App {
-    public static void main(String[] args) {
-        Plateau plateau = new Plateau(5, 5);
-        Rover rover1 = new Rover(1, 2, 'N');
-        rover1.changeOrientation('L');
-        rover1.move();
-        rover1.changeOrientation('L');
-        rover1.move();
-        rover1.changeOrientation('L');
-        rover1.move();
-        rover1.changeOrientation('L');
-        rover1.move();
-        rover1.move();
+    public static void main(String[] args) throws IOException{
+        List<String> lines = FileReader.readFile();
 
-        Rover rover2 = new Rover(3, 3, 'E');
-        rover2.move();
-        rover2.move();
-        rover2.changeOrientation('R');
-        rover2.move();
-        rover2.move();
-        rover2.changeOrientation('R');
-        rover2.move();
-        rover2.changeOrientation('R');
-        rover2.changeOrientation('R');
-        rover2.move();
+        String[] plateau = lines.get(0).split(" ");
+        Plateau plateauTerra = new Plateau(Integer.parseInt(plateau[0]), Integer.parseInt(plateau[1]));
 
-        plateau.getRovers().add(rover1);
-        plateau.getRovers().add(rover2);
+        for (int i = 1; i < lines.size(); i+=2) {
+            String[] roverAttr = lines.get(i).split(" ");
 
-        for (int i = 0; i < plateau.getRovers().size(); i++) {
-            System.out.println(plateau.getRovers().get(i));
+            Rover rover = new Rover(Integer.parseInt(roverAttr[0]), Integer.parseInt(roverAttr[1]), roverAttr[2].charAt(0));
+            plateauTerra.getRovers().add(rover);
+
+           char[] orientation = lines.get(i+1).toCharArray(); 
+           rover.move(orientation);
         }
 
+        for (int i = 0; i < plateauTerra.getRovers().size(); i++) {
+            System.out.println(plateauTerra.getRovers().get(i));
+        }
     }
 }
