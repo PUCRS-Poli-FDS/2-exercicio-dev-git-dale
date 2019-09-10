@@ -6,8 +6,8 @@ public class App {
         List<String> lines = FileReader.readFile();
 
         Plateau plateau = Plateau.getInstance(5,5);
-        String[] plateau = lines.get(0).split(" ");
-        Plateau plateauTerra = new Plateau(Integer.parseInt(plateau[0]), Integer.parseInt(plateau[1]));
+        //String[] plateau = lines.get(0).split(" ");
+        //Plateau plateauTerra = new Plateau(Integer.parseInt(plateau[0]), Integer.parseInt(plateau[1]));
 
         for (int i = 1; i < lines.size(); i+=2) {
             String[] roverAttr = lines.get(i).split(" ");
