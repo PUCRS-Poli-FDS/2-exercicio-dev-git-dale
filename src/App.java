@@ -5,6 +5,7 @@ public class App {
     public static void main(String[] args) throws IOException{
         List<String> lines = FileReader.readFile();
 
+        Plateau plateau = Plateau.getInstance(5,5);
         String[] plateau = lines.get(0).split(" ");
         Plateau plateauTerra = new Plateau(Integer.parseInt(plateau[0]), Integer.parseInt(plateau[1]));
 
