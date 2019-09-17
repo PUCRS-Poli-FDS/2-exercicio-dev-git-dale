@@ -9,6 +9,8 @@ public class Rover {
         this.orientation = orientation;
     }
 
+    //TODOÇ: fazer os gets e sets dos atributos para o teste unitários
+
     private void changeOrientation(char direction) {
         switch (orientation) {
             case 'N':
