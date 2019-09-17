@@ -5,6 +5,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.class
 
 .idea
 out
