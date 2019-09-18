@@ -7,6 +7,7 @@ public class Plateau {
     private int coordX;
     private int coordY;
     private int[][] plateau;
+    private List<Rover> rovers;
 
     private Plateau(int coordX, int coordY){
         this.coordX = coordX;
