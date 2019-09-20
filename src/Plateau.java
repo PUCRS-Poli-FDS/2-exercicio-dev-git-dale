@@ -22,7 +22,7 @@ public class Plateau {
 
     public static synchronized Plateau getInstance() {
         if (instance == null)
-            throw new RuntimeException();
+            throw new RuntimeException("Class not instantiated");
         return instance;
     }
 

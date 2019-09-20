@@ -18,8 +18,19 @@ public class Rover {
         this.orientation = orientation;
     }
 
-    private void changeOrientation(char direction) {
+    public void move(char[] directions) {
+        for (char direction : directions) {
+            if (direction == LEFT_DIRECTION || direction == RIGHT_DIRECTION) {
+                changeOrientation(direction);
+            } else if (direction == MOVE_COMMAND) {
+                forwardMove();
+            } else {
+                throw new RuntimeException("Invalid direction");
+            }
+        }
+    }
 
+    private void changeOrientation(char direction) {
         switch (orientation) {
             case NORTH_ORIENTATION:
                 changeOrientation(direction, EAST_ORIENTATION, WEST_ORIENTATION);
@@ -42,23 +53,7 @@ public class Rover {
         if (direction == RIGHT_DIRECTION) {
             orientation = rightDirection;
         } else {
-            if (direction == LEFT_DIRECTION) {
-                orientation = leftDirection;
-            } else {
-                throw new RuntimeException("Invalid direction");
-            }
-        }
-    }
-
-    public void move(char[] directions) {
-        for (char direction : directions) {
-            if (direction == LEFT_DIRECTION || direction == RIGHT_DIRECTION) {
-                changeOrientation(direction);
-            } else {
-                if (direction == MOVE_COMMAND) {
-                    forwardMove();
-                }
-            }
+            orientation = leftDirection;
         }
     }
 
