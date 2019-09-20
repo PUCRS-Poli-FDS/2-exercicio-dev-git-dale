@@ -9,8 +9,6 @@ public class Rover {
         this.orientation = orientation;
     }
 
-    //TODO: fazer os gets e sets dos atributos para o teste unitários
-
     private void changeOrientation(char direction) {
         switch (orientation) {
         case 'N':
@@ -86,5 +84,29 @@ public class Rover {
     @Override
     public String toString() {
         return coordX + " " + coordY + " " + orientation;
+    }
+
+    public int getCoordX() {
+        return coordX;
+    }
+
+    public void setCoordX(int coordX) {
+        this.coordX = coordX;
+    }
+
+    public int getCoordY() {
+        return coordY;
+    }
+
+    public void setCoordY(int coordY) {
+        this.coordY = coordY;
+    }
+
+    public char getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(char orientation) {
+        this.orientation = orientation;
     }
 }

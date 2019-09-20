@@ -6,13 +6,11 @@ public class Plateau {
     
     private int coordX;
     private int coordY;
-    private int[][] plateau;
     private List<Rover> rovers;
 
     private Plateau(int coordX, int coordY){
         this.coordX = coordX;
         this.coordY = coordY;
-        plateau = new int[coordX][coordY];
     }
 
     public static synchronized Plateau getInstance(int coordX, int coordY) {
@@ -27,8 +25,6 @@ public class Plateau {
         return instance;
     }
     
-    public int[][] getPlateau(){ return plateau;}
-
     public int getCoordX() {
         return coordX;
     }
