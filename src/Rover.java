@@ -1,4 +1,13 @@
 public class Rover {
+
+    private static final char EAST_ORIENTATION = 'E';
+    private static final char WEST_ORIENTATION = 'W';
+    private static final char SOUTH_ORIENTATION = 'S';
+    private static final char NORTH_ORIENTATION = 'N';
+    private static final char RIGHT_DIRECTION = 'R';
+    private static final char LEFT_DIRECTION = 'L';
+    private static final char MOVE_COMMAND = 'M';
+
     private int coordX;
     private int coordY;
     private char orientation;
@@ -10,74 +19,75 @@ public class Rover {
     }
 
     private void changeOrientation(char direction) {
+
         switch (orientation) {
-        case 'N':
-            changeOrientation(direction, 'E', 'W');
-            break;
-        case 'E':
-            changeOrientation(direction, 'S', 'N');
-            break;
-        case 'W':
-            changeOrientation(direction, 'N', 'S');
-            break;
-        case 'S':
-            changeOrientation(direction, 'W', 'E');
-            break;
-        default:
-            throw new RuntimeException("Wrong orientation");
+            case NORTH_ORIENTATION:
+                changeOrientation(direction, EAST_ORIENTATION, WEST_ORIENTATION);
+                break;
+            case EAST_ORIENTATION:
+                changeOrientation(direction, SOUTH_ORIENTATION, NORTH_ORIENTATION);
+                break;
+            case WEST_ORIENTATION:
+                changeOrientation(direction, NORTH_ORIENTATION, SOUTH_ORIENTATION);
+                break;
+            case SOUTH_ORIENTATION:
+                changeOrientation(direction, WEST_ORIENTATION, EAST_ORIENTATION);
+                break;
+            default:
+                throw new RuntimeException("Wrong orientation");
         }
     }
 
     private void changeOrientation(char direction, char rightDirection, char leftDirection) {
-        if (direction == 'R') {
+        if (direction == RIGHT_DIRECTION) {
             orientation = rightDirection;
-        } else if (direction == 'L') {
-            orientation = leftDirection;
         } else {
-            throw new RuntimeException("Invalid direction");
+            if (direction == LEFT_DIRECTION) {
+                orientation = leftDirection;
+            } else {
+                throw new RuntimeException("Invalid direction");
+            }
+        }
+    }
+
+    public void move(char[] directions) {
+        for (char direction : directions) {
+            if (direction == LEFT_DIRECTION || direction == RIGHT_DIRECTION) {
+                changeOrientation(direction);
+            } else {
+                if (direction == MOVE_COMMAND) {
+                    forwardMove();
+                }
+            }
         }
     }
 
     private void forwardMove() {
         switch (orientation) {
-        case 'N':
-            move(coordX, coordY + 1);
-            break;
-        case 'E':
-            move(coordX + 1, coordY);
-            break;
-        case 'W':
-            move(coordX - 1, coordY);
-            break;
-        case 'S':
-            move(coordX, coordY - 1);
-            break;
-        default:
-            throw new RuntimeException("Wrong orientation");
+            case NORTH_ORIENTATION:
+                forwardMove(coordX, coordY + 1);
+                break;
+            case EAST_ORIENTATION:
+                forwardMove(coordX + 1, coordY);
+                break;
+            case WEST_ORIENTATION:
+                forwardMove(coordX - 1, coordY);
+                break;
+            case SOUTH_ORIENTATION:
+                forwardMove(coordX, coordY - 1);
+                break;
+            default:
+                throw new RuntimeException("Wrong orientation");
         }
     }
 
-    public void move(char[] orientation) {
-        for (char var : orientation) {
-            if (var == 'L' || var == 'R') {
-                changeOrientation(var);
-            } else if (var == 'M') {
-                forwardMove();
-            }
-        }
-    }
-
-    private void move(int coordX, int coordY) {
-        boolean cm = ((coordX < 0 && coordX < Plateau.getInstance().getCoordX())
-                || (coordY < 0 && coordY < Plateau.getInstance().getCoordY()))
-                && Plateau.getInstance().getPlateau()[coordX][coordY] == 0;
-        if(cm){
-            Plateau.getInstance().getPlateau()[this.coordX][this.coordY] = 0;
+    private void forwardMove(int coordX, int coordY) {
+        boolean canMove = Plateau.getInstance().canMove(coordX, coordY);
+        if (canMove) {
             this.coordX = coordX;
             this.coordY = coordY;
-            Plateau.getInstance().getPlateau()[this.coordX][this.coordY] = 1;
         } else {
-            System.out.println("Invalid position");
+            throw new RuntimeException("This rover cannot move to this position.");
         }
     }
 
@@ -86,27 +96,4 @@ public class Rover {
         return coordX + " " + coordY + " " + orientation;
     }
 
-    public int getCoordX() {
-        return coordX;
-    }
-
-    public void setCoordX(int coordX) {
-        this.coordX = coordX;
-    }
-
-    public int getCoordY() {
-        return coordY;
-    }
-
-    public void setCoordY(int coordY) {
-        this.coordY = coordY;
-    }
-
-    public char getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(char orientation) {
-        this.orientation = orientation;
-    }
 }

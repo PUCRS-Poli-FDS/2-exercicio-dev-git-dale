@@ -8,7 +8,7 @@ import java.nio.file.Files;
 
 public class FileReader{
 
-    private static final String FILE_PATH = "\\txt\\mars_commands.txt";
+    private static final String FILE_PATH = "/txt/mars_commands.txt";
 
     public static List<String> readFile() throws IOException {
         String currDir = Paths.get("").toAbsolutePath().toString();
